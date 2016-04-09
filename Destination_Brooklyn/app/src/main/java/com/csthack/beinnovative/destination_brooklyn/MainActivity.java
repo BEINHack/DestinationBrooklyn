@@ -5,6 +5,7 @@ import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import android.view.*;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         mMap = map;
 
         mMap.setOnMyLocationButtonClickListener(this);
-        enableMyLocation();
+        //enableMyLocation();
     }
 
     /**
@@ -109,6 +111,43 @@ public class MainActivity extends AppCompatActivity
     private void showMissingPermissionError() {
         PermissionUtils.PermissionDeniedDialog
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
+    }
+
+    /**
+     * Adding menu bar
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_activity_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.settings_id:
+                Toast.makeText(getApplicationContext(),"Settings activity opens", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.store_id:
+                Toast.makeText(getApplicationContext(),"Store fragment opens", Toast.LENGTH_SHORT).show();
+                break;
+
+
+            case R.id.centre_id:
+
+                Toast.makeText(getApplicationContext(), "Centers GPS location", Toast.LENGTH_SHORT).show();
+//                LocationManager lm;
+//                lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10, this);
+                break;
+
+            case R.id.search_id:
+                Toast.makeText(getApplicationContext(),"Allow user to search a specific address/ subject", Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
