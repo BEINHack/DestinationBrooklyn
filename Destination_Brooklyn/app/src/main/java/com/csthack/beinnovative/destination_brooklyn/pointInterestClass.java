@@ -8,6 +8,17 @@ public class pointInterestClass {
     private String name, imageURL, description, website,timePeriod, buildingType;
     private double latitude, longitude;
 
+    pointInterestClass(String name, String imageURL, String description, String website, String timePeriod, String buildingType, double latitude, double longitude) {
+        this.name = name;
+        this.imageURL = imageURL;
+        this.description = description;
+        this.website = website;
+        this.timePeriod = timePeriod;
+        this.buildingType = buildingType;
+        this.latitude = latitude;
+        this.longitude = longitude;
+    }
+
     private void setName(String name){
         this.name = name;
     }
