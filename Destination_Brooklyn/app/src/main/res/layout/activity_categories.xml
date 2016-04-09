@@ -63,7 +63,27 @@
                 android:drawablePadding ="10dp"
                 android:padding="5dp"
                 android:spinnerMode="dropdown"/>
-
     </LinearLayout>
+    <Button
+        android:id="@+id/btn_FilterResults"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_heightPercent="10%"
+        app:layout_widthPercent="100%"
+        android:text="Filter Results"
+        android:layout_below="@+id/linearLayout_btns"
+        android:background="@drawable/button_boarder"
+        style="@style/Widget.AppCompat.Button.Borderless"/>
+
+    <fragment
+        android:id="@+id/details_fragment"
+        class="com.csthack.beinnovative.destination_brooklyn.ShopActivity"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_heightPercent="40%"
+        app:layout_widthPercent="100%"
+        android:layout_below="@+id/btn_FilterResults"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
 
 </android.support.percent.PercentRelativeLayout>
