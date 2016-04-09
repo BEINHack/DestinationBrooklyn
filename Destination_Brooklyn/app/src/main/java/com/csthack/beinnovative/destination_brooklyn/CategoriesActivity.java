@@ -91,7 +91,7 @@ public class CategoriesActivity extends FragmentActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent launchActivity = new Intent();
         switch (item.getItemId()){
-            case R.id.settings_id:
+            case R.id.filter_id:
                 launchActivity = new Intent(this, CategoriesActivity.class);
                 break;
 
