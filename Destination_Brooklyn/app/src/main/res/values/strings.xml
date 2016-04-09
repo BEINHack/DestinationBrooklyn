@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">Destination_Brooklyn</string>
     <string name="title_activity_main">Destination Brooklyn</string>
-    <string name="title_activity_categories">CategoriesActivity</string>
+    <string name="title_activity_categories">Categories Activity</string>
+    <string name="cat1">Time Period</string>
+    <string name="cat2">Building Type</string>
+    <string name="cat3">Extra</string>
+    <string-array name="TimePeriods_array">
+        <item>1960</item>
+        <item>1950</item>
+        <item>1990</item>
+        <item>1980</item>
+        <item>2000</item>
+        <item>1970</item>
+        <item>1940</item>
+    </string-array>
 </resources>
