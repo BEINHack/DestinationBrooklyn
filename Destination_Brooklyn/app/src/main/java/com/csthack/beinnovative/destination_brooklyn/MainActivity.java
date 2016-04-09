@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent launchActivity;
+        Intent launchActivity = new Intent();
         switch (item.getItemId()){
             case R.id.settings_id:
                 launchActivity = new Intent(this, CategoriesActivity.class);
@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplicationContext(),"Allow user to search a specific address/ subject", Toast.LENGTH_SHORT).show();
                 break;
         }
+        startActivity(launchActivity);
         return super.onOptionsItemSelected(item);
     }
 
