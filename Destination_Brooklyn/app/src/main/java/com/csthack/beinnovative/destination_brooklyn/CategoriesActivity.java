@@ -2,6 +2,7 @@ package com.csthack.beinnovative.destination_brooklyn;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -34,6 +35,7 @@ public class CategoriesActivity extends FragmentActivity
     String timePeriodSelected, buildingTypeSelected;
     Button btn_filterResults, btn_Popular;
     Boolean isPopularOn = false, blackPressed = false;
+    Drawable border =  getResources().getDrawable( R.drawable.button_boarder);
 
 
     @Override
@@ -51,13 +53,15 @@ public class CategoriesActivity extends FragmentActivity
         btn_Popular = (Button) findViewById(R.id.btn_Popular);
         btn_Popular.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (blackPressed){
-                    btn_Popular.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                if (blackPressed == true){
+                    btn_Popular.setBackground(border);
                     btn_Popular.setTextColor(Color.parseColor("#474C55"));
                     isPopularOn = false;
+                    blackPressed = false;
                 } else {
                     btn_Popular.setBackgroundColor(Color.parseColor("#474C55"));
                     btn_Popular.setTextColor(Color.parseColor("#FFFFFF"));
+                    blackPressed = true;
                     isPopularOn = true;
                 }
             }

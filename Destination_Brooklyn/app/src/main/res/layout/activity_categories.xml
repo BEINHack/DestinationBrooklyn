@@ -60,10 +60,8 @@
                 android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:text = "Show Popular"
-                android:prompt="@string/cat3"
                 android:background="@drawable/button_boarder"
                 style="@style/Widget.AppCompat.Button.Borderless"
-                android:theme="@style/MyButton"
                 android:drawablePadding ="10dp"
                 android:padding="5dp"
                 android:spinnerMode="dropdown"/>
