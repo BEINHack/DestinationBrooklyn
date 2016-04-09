@@ -5,7 +5,7 @@ package com.csthack.beinnovative.destination_brooklyn;
  */
 public class pointInterestClass {
 
-    private String name, imageURL, description, website;
+    private String name, imageURL, description, website,timePeriod, buildingType;
     private double latitude, longitude;
 
     private void setName(String name){
@@ -54,5 +54,36 @@ public class pointInterestClass {
 
     private double getLongitude(){
         return this.longitude;
+    }
+
+    private void setTimePeriod(String timePeriod){
+        this.timePeriod = timePeriod;
+    }
+
+    private String getTimePeriod(){
+        return this.timePeriod;
+    }
+
+    private void setBuildingType(String buildingType){
+        this.buildingType = buildingType;
+    }
+
+    private String getBuildingType(){
+        return this.buildingType;
+    }
+
+    private int whatBuildingType(String buildingTypeValue){
+        int retValue;
+        switch(buildingTypeValue.toLowerCase()){
+            case "streetart":
+                retValue = 1;
+            case "architecture":
+                retValue = 2;
+            case "museum":
+                retValue = 3;
+            default:
+                retValue = 0;
+        }
+        return retValue;
     }
 }
