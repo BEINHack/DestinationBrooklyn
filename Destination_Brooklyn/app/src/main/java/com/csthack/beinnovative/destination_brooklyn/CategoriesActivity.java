@@ -1,6 +1,7 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -31,7 +32,9 @@ public class CategoriesActivity extends FragmentActivity
 
     Spinner timeFilter, buildingType;
     String timePeriodSelected, buildingTypeSelected;
-    Button btn_filterResults;
+    Button btn_filterResults, btn_Popular;
+    Boolean isPopularOn = false, blackPressed = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,20 @@ public class CategoriesActivity extends FragmentActivity
         timeFilter =(Spinner) findViewById(R.id.spinner_TimeFilter);
         buildingType =(Spinner) findViewById(R.id.spinner_BuildingType);
         btn_filterResults = (Button) findViewById(R.id.btn_FilterResults);
+        btn_Popular = (Button) findViewById(R.id.btn_Popular);
+        btn_Popular.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                if (blackPressed){
+                    btn_Popular.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    btn_Popular.setTextColor(Color.parseColor("#474C55"));
+                    isPopularOn = false;
+                } else {
+                    btn_Popular.setBackgroundColor(Color.parseColor("#474C55"));
+                    btn_Popular.setTextColor(Color.parseColor("#FFFFFF"));
+                    isPopularOn = true;
+                }
+            }
+        });
         btn_filterResults.setOnClickListener(this);
     }
     public void onClick(View v) {
@@ -53,6 +70,7 @@ public class CategoriesActivity extends FragmentActivity
         Intent launchMain = new Intent(this, MainActivity.class);
         launchMain.putExtra("TimePeriod", timePeriodSelected);
         launchMain.putExtra("buildingType", buildingTypeSelected);
+        launchMain.putExtra("Popular", isPopularOn);
         startActivity(launchMain);
     }
 
@@ -60,7 +78,6 @@ public class CategoriesActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
 
     }
-
     /**
      * Adding menu bar
      */
