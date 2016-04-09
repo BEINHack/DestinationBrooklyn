@@ -13,9 +13,13 @@
     tools:context="com.csthack.beinnovative.destination_brooklyn.CategoriesActivity"
     tools:showIn="@layout/activity_categories">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <LinearLayout
+        android:id="@+id/linearLayout_btns"
+        android:layout_height="match_parent"
+        android:layout_width="fill_parent"
+        android:orientation="horizontal">
+    </LinearLayout>
+
+    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:name="LinearLayout"/>-->
 </android.support.percent.PercentRelativeLayout>
