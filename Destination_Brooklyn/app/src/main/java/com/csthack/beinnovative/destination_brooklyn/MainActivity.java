@@ -5,6 +5,7 @@ import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 
+import android.content.Intent;
 import android.view.*;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -125,22 +126,19 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Intent launchActivity;
         switch (item.getItemId()){
             case R.id.settings_id:
-                Toast.makeText(getApplicationContext(),"Settings activity opens", Toast.LENGTH_SHORT).show();
+                launchActivity = new Intent(this, CategoriesActivity.class);
                 break;
 
             case R.id.store_id:
-                Toast.makeText(getApplicationContext(),"Store fragment opens", Toast.LENGTH_SHORT).show();
+                launchActivity = new Intent(this, ShopActivity.class);
                 break;
 
 
             case R.id.centre_id:
-
-                Toast.makeText(getApplicationContext(), "Centers GPS location", Toast.LENGTH_SHORT).show();
-//                LocationManager lm;
-//                lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 10, this);
+                launchActivity = new Intent(this, MainActivity.class);
                 break;
 
             case R.id.search_id:
