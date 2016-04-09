@@ -4,6 +4,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.PointOfInterest;
 
 import android.content.Intent;
 import android.view.*;
@@ -15,7 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
-
+import com.csthack.beinnovative.destination_brooklyn.pointInterestClass;
 public class MainActivity extends AppCompatActivity
         implements
         OnMyLocationButtonClickListener,
@@ -45,7 +46,12 @@ public class MainActivity extends AppCompatActivity
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        POIdata start = new POIdata();
+        pointInterestClass [] myObjects = start.getPOIobjects();
+        double lat = myObjects[1].getLatitude();
+        double lon = myObjects[1].getLatitude();
     }
+
 
     @Override
     public void onMapReady(GoogleMap map) {

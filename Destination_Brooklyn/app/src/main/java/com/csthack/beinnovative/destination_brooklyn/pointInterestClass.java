@@ -23,7 +23,7 @@ public class pointInterestClass {
         this.name = name;
     }
 
-    private String getName(){
+    protected String getName(){
         return this.name;
     }
 
@@ -31,7 +31,7 @@ public class pointInterestClass {
         this.imageURL = imageURL;
     }
 
-    private String getImageURL(){
+    protected String getImageURL(){
         return this.imageURL;
     }
 
@@ -39,7 +39,7 @@ public class pointInterestClass {
         this.description = description;
     }
 
-    private String getDescription(){
+    protected String getDescription(){
         return this.description;
     }
 
@@ -47,7 +47,7 @@ public class pointInterestClass {
         this.website = website;
     }
 
-    private String getWebsite(){
+    protected String getWebsite(){
         return this.website;
     }
 
@@ -55,7 +55,7 @@ public class pointInterestClass {
         this.latitude = latitude;
     }
 
-    private double getLatitude(){
+    protected double getLatitude(){
         return this.latitude;
     }
 
@@ -63,7 +63,7 @@ public class pointInterestClass {
         this.longitude = longitude;
     }
 
-    private double getLongitude(){
+    protected double getLongitude(){
         return this.longitude;
     }
 
@@ -71,7 +71,7 @@ public class pointInterestClass {
         this.timePeriod = timePeriod;
     }
 
-    private String getTimePeriod(){
+    protected String getTimePeriod(){
         return this.timePeriod;
     }
 
@@ -79,11 +79,11 @@ public class pointInterestClass {
         this.buildingType = buildingType;
     }
 
-    private String getBuildingType(){
+    protected String getBuildingType(){
         return this.buildingType;
     }
 
-    private int whatBuildingType(String buildingTypeValue){
+    protected int whatBuildingType(String buildingTypeValue){
         int retValue;
         switch(buildingTypeValue.toLowerCase()){
             case "streetart":

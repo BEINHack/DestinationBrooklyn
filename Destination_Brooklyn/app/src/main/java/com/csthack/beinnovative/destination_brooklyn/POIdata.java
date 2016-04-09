@@ -20,6 +20,7 @@ public class POIdata {
                 -73.992408
         );
 
+
         pointInterestClass POI2 = new pointInterestClass(
                 "Brooklyn Children's Museum",
                 "http://images.familyvacationcritic.com/article_slideshows/12c0495c5a8d24eb052e9872bef25186.jpg\n",
