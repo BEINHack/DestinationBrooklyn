@@ -33,7 +33,7 @@
         app:layout_widthPercent="100%">
 
             <Spinner
-                android:id="@+id/btn_TimeFilter"
+                android:id="@+id/spinner_TimeFilter"
                 android:prompt="@string/cat1"
                 android:background="@drawable/button_boarder"
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -44,7 +44,7 @@
                 android:layout_height="match_parent"
                 android:entries="@array/TimePeriods_array"/>
             <Spinner
-                android:id="@+id/btn_BuildingType"
+                android:id="@+id/spinner_BuildingType"
                 android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:prompt="@string/cat2"
