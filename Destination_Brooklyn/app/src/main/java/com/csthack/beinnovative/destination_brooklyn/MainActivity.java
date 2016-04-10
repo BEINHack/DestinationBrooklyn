@@ -8,12 +8,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.maps.model.PointOfInterest;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.*;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -22,9 +24,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
-
-import com.csthack.beinnovative.destination_brooklyn.pointInterestClass;
 
 public class MainActivity extends AppCompatActivity
         implements
@@ -66,11 +68,11 @@ public class MainActivity extends AppCompatActivity
         /**
          * Sets default map view to current location
          */
-        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         double longitude = location.getLongitude();
         double latitude = location.getLatitude();
-        map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude) , 14.0f) );
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 14.0f));
 
         /**
          * Creates an array of objects using the POIdata class and pointInterestClass
@@ -96,18 +98,89 @@ public class MainActivity extends AppCompatActivity
                 if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)
                         && myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
 
+                    mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+                    //getLayoutInflater().inflate(R.layout.custom_info_window, null);
+
                     lat = myObjects[i].getLatitude();
                     lon = myObjects[i].getLongitude();
-                    mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(lat, lon))
-                            .title(myObjects[i].getName()));
 
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(lat, lon))
+                            .title(myObjects[i].getName())
+                            .snippet(myObjects[i].getDescription()));
+
+                    //marker.showInfoWindow();
                 }
+            }
+        }
+        enableMyLocation();
+    }
+
+    private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+
+        private final View mWindow;
+
+        private final View mContents;
+
+        CustomInfoWindowAdapter() {
+            mWindow = getLayoutInflater().inflate(R.layout.custom_info_window, null);
+            mContents = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+        }
+
+        @Override
+        public View getInfoWindow(Marker marker) {
+            render(marker, mWindow);
+            return mWindow;
+        }
+
+        @Override
+        public View getInfoContents(Marker marker) {
+            render(marker, mContents);
+            return mContents;
+        }
+
+        private void render(Marker marker, View view) {
+            int badge;
+            // Use the equals() method on a Marker to check for equals.  Do not use ==.
+//            if (marker.equals(mBrisbane)) {
+//                badge = R.drawable.badge_qld;
+//            } else if (marker.equals(mAdelaide)) {
+//                badge = R.drawable.badge_sa;
+//            } else if (marker.equals(mSydney)) {
+//                badge = R.drawable.badge_nsw;
+//            } else if (marker.equals(mMelbourne)) {
+//                badge = R.drawable.badge_victoria;
+//            } else if (marker.equals(mPerth)) {
+//                badge = R.drawable.badge_wa;
+//            } else {
+//                // Passing 0 to setImageResource will clear the image view.
+//                badge = 0;
+//            }
+
+            String title = marker.getTitle();
+            TextView titleUi = ((TextView) view.findViewById(R.id.title));
+            if (title != null) {
+                // Spannable string allows us to edit the formatting of the text.
+                SpannableString titleText = new SpannableString(title);
+                titleText.setSpan(new ForegroundColorSpan(Color.RED), 0, titleText.length(), 0);
+                titleUi.setText(titleText);
+            } else {
+                titleUi.setText("");
+            }
+
+            String snippet = marker.getSnippet();
+            TextView snippetUi = ((TextView) view.findViewById(R.id.snippet));
+            if (snippet != null && snippet.length() > 12) {
+                SpannableString snippetText = new SpannableString(snippet);
+                snippetText.setSpan(new ForegroundColorSpan(Color.MAGENTA), 0, 10, 0);
+                snippetText.setSpan(new ForegroundColorSpan(Color.BLUE), 12, snippet.length(), 0);
+                snippetUi.setText(snippetText);
+            } else {
+                snippetUi.setText("");
             }
         }
 
 
-        enableMyLocation();
     }
 
     /**
