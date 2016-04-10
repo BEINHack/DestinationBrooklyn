@@ -1,5 +1,6 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -9,7 +10,10 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PointOfInterest;
 
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.view.*;
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -20,23 +24,11 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.csthack.beinnovative.destination_brooklyn.pointInterestClass;
-
 public class MainActivity extends AppCompatActivity
         implements
         OnMyLocationButtonClickListener,
         OnMapReadyCallback,
         ActivityCompat.OnRequestPermissionsResultCallback {
-
-//    private static final LatLng BRISBANE = new LatLng(-27.47093, 153.0235);
-//
-//    private static final LatLng MELBOURNE = new LatLng(-37.81319, 144.96298);
-//
-//    private static final LatLng SYDNEY = new LatLng(-33.87365, 151.20689);
-//
-//    private static final LatLng ADELAIDE = new LatLng(-34.92873, 138.59995);
-//
-//    private static final LatLng PERTH = new LatLng(-31.952854, 115.857342);
 
     /**
      * Request code for location permission request.
@@ -61,33 +53,6 @@ public class MainActivity extends AppCompatActivity
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-//        POIdata start = new POIdata();
-//        pointInterestClass[] myObjects = start.getPOIobjects();
-//        int length = myObjects.length;
-        //System.out.println(length);
-
-
-//        String periodSelected = getIntent().getExtras().getString("buildingType");
-//        String timeSelected = getIntent().getExtras().getString("TimePeriod");
-//        for (int i = 0; i <= length; i++) {
-//            lat = myObjects[i].getLatitude();
-//            lon = myObjects[i].getLongitude();
-//            mMap.addMarker(new MarkerOptions()
-//                    .position(new LatLng(lat, lon))
-//                    .title(myObjects[i].getName()));
-//        }
-//
-//
-//        if (periodSelected.equals(null) && timeSelected.equals(null)) {
-//            for (int i = 0; i <= myObjects.length; i++) {
-//                lat = myObjects[i].getLatitude();
-//                lon = myObjects[i].getLatitude();
-//                mMap.addMarker(new MarkerOptions()
-//                        .position(new LatLng(lat, lon))
-//                        .title(myObjects[i].getName()));
-//            }
-//        }
-
     }
 
 
@@ -96,26 +61,31 @@ public class MainActivity extends AppCompatActivity
         mMap = map;
         mMap.setOnMyLocationButtonClickListener(this);
 
+        /**
+         * Sets default map view to current location
+         */
+        LocationManager lm = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        double longitude = location.getLongitude();
+        double latitude = location.getLatitude();
+        map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude) , 14.0f) );
 
         POIdata start = new POIdata();
         pointInterestClass[] myObjects = start.getPOIobjects();
-        int length = myObjects.length;
 
-//        lat = myObjects[1].getLatitude();
-//            lon = myObjects[1].getLongitude();
-//            map.addMarker(new MarkerOptions()
-//                    .position(new LatLng(lat, lon))
-//                    .title(myObjects[1].getName()));
+        String periodSelected = getIntent().getExtras().getString("buildingType");
+        String timeSelected = getIntent().getExtras().getString("TimePeriod");
 
-
-
-        for (int i = 0; i < length; i++) {
-            lat = myObjects[i].getLatitude();
-            lon = myObjects[i].getLongitude();
-            map.addMarker(new MarkerOptions()
-                    .position(new LatLng(lat, lon))
-                    .title(myObjects[i].getName()));
+        if (periodSelected.equals(null) && timeSelected.equals(null)) {
+            for (int i = 0; i < myObjects.length; i++) {
+                lat = myObjects[i].getLatitude();
+                lon = myObjects[i].getLatitude();
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(lat, lon))
+                        .title(myObjects[i].getName()));
+            }
         }
+
 
         enableMyLocation();
     }
