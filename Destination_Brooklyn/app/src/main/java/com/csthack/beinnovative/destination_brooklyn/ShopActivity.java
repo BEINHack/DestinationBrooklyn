@@ -6,14 +6,27 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ShopActivity extends AppCompatActivity {
+    ListView shopList;
+    CustomListAdapter adapter;
+    private shopClass[] shopObjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+        shopList = (ListView) findViewById(R.id.list);
+        ShopData start = new ShopData();
+        shopObjects = start.getShopData();
+        adapter = new CustomListAdapter(this, shopObjects);
+        shopList.setAdapter(adapter);
+
+    // notifying list adapter about data changes
+    // so that it renders the list view with updated data
+        adapter.notifyDataSetChanged();
     }
 
     /**

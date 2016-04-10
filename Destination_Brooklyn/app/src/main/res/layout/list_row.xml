@@ -34,14 +34,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="bottom|start"
-            android:layout_alignParentBottom="true">
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="10dp">
 
             <!-- Shop Title -->
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
                 android:text="Test"
                 android:textSize="@dimen/title"
                 android:textStyle="bold"
@@ -50,7 +50,7 @@
 
             <!-- Description -->
             <TextView
-                android:id="@+id/Description"
+                android:id="@+id/description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/title"
@@ -61,17 +61,5 @@
                 android:textSize="@dimen/genre" />
 
         </LinearLayout>
-
-
-        <!-- Release Year -->
-        <TextView
-            android:id="@+id/releaseYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/year"
-            android:textSize="@dimen/year" />
-
     </RelativeLayout>
 </android.support.percent.PercentRelativeLayout>
