@@ -60,6 +60,7 @@ public class CustomListAdapter extends ArrayAdapter<shopClass> {
         return view;
     }
 
+
     private View getWorkingView(final View convertView) {
         // The workingView is basically just the convertView re-used if possible
         // or inflated new if not possible

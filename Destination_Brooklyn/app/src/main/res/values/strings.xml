@@ -29,4 +29,5 @@
         <item>Museum</item>
         <item>Memorial</item>
     </string-array>
+    <string name="title_activity_shop_detail">shopDetailActivity</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -36,7 +39,21 @@ public class ShopActivity extends AppCompatActivity {
 //            adapter.add(shopObjects.get(i));
 //        }
         shopList.setAdapter(adapter);
+        shopList.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View v, int position,
+                                    long arg3)
+            {
+                shopClass passOn = shopObjects.get(position);
+                String shopname = passOn.getName();
+                Intent launchMain = new Intent(ShopActivity.this, shopDetailActivity.class);
+                launchMain.putExtra("shopname", shopname);
+                startActivity(launchMain);
+            }
+        });
     }
+
 
     public void setBackground () {
         for(int i =0; i<shopObjects.size(); i++)
