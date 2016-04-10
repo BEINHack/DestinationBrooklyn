@@ -96,6 +96,8 @@ public class ShopActivity extends AppCompatActivity {
 
             case R.id.centre_id:
                 launchActivity = new Intent(this, MainActivity.class);
+                launchActivity.putExtra("buildingType", "");
+                launchActivity.putExtra("TimePeriod", "");
                 break;
 
             case R.id.search_id:
