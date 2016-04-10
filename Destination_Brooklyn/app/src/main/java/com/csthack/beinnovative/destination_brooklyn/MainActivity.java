@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
     }
 
 
@@ -85,11 +87,11 @@ public class MainActivity extends AppCompatActivity
         String buildingSelected ="";
         String timeSelected ="";
         if (intent != null) {
-            buildingSelected = intent.getString("buildingType");
-            timeSelected = intent.getString("TimePeriod");
+            buildingSelected = intent.getString("Building Type");
+            timeSelected = intent.getString("Time Period");
         } else {
-            buildingSelected = "";
-            timeSelected = "";
+            buildingSelected = "Building Type";
+            timeSelected = "Time Period";
         }
         /*
         Bundle bundle1 = getIntent().getExtras();
