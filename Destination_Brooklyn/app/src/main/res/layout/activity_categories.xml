@@ -81,15 +81,36 @@
         android:background="@drawable/button_boarder"
         style="@style/Widget.AppCompat.Button.Borderless"/>
 
-    <!--<fragment-->
-        <!--android:id="@+id/details_fragment"-->
-        <!--class="com.csthack.beinnovative.destination_brooklyn.ShopActivity"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_heightPercent="40%"-->
-        <!--app:layout_widthPercent="100%"-->
-        <!--android:layout_below="@+id/btn_FilterResults"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:layout_marginBottom="10dp"/>-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/title"
+        android:paddingBottom="5dp"
+        android:paddingTop="15dp"
+        android:layout_below="@+id/btn_FilterResults"
+        android:text="With the Collaboration of:"
+        android:textColor="@color/dark_gray"/>
+
+    <LinearLayout
+        android:id="@+id/details_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal" >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src ="@drawable/bkpartnership"
+            android:paddingRight="25dp"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:src ="@drawable/bein"/>
+    </LinearLayout>
 
 </android.support.percent.PercentRelativeLayout>

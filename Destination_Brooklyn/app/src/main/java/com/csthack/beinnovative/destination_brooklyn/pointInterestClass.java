@@ -1,5 +1,7 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by nolan on 4/9/16.
  */
@@ -7,6 +9,7 @@ public class pointInterestClass {
 
     private String name, imageURL, description, website,timePeriod, buildingType;
     private double latitude, longitude;
+    Drawable image;
 
     pointInterestClass(String name, String imageURL, String description, String website, String timePeriod, String buildingType, double latitude, double longitude) {
         this.name = name;

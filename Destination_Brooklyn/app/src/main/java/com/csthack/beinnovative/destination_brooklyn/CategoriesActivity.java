@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-
+import com.csthack.beinnovative.destination_brooklyn.POIdata;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuInflater;
@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +33,8 @@ public class CategoriesActivity extends AppCompatActivity
     String timePeriodSelected, buildingTypeSelected;
     Button btn_filterResults, btn_Popular;
     Boolean isPopularOn = false, blackPressed = false;
-
+    pointInterestClass[] myObjects;
+    LinearLayout detailsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,7 @@ public class CategoriesActivity extends AppCompatActivity
         buildingType.setSelection(0);
         btn_filterResults = (Button) findViewById(R.id.btn_FilterResults);
         btn_Popular = (Button) findViewById(R.id.btn_Popular);
+        detailsList = (LinearLayout) findViewById(R.id.details_list);
         btn_Popular.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (blackPressed == true){
@@ -64,6 +67,14 @@ public class CategoriesActivity extends AppCompatActivity
             }
         });
         btn_filterResults.setOnClickListener(this);
+        /**
+         * Creates an array of objects using the POIdata class and pointInterestClass
+         */
+
+        POIdata start = new POIdata();
+        myObjects = start.getPOIobjects();
+        getPOIobjects();
+
     }
     public void onClick(View v) {
         timePeriodSelected = timeFilter.getSelectedItem().toString();
@@ -78,6 +89,11 @@ public class CategoriesActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap mMap) {
 
+    }
+
+    public pointInterestClass[] getPOIobjects() {
+
+        return myObjects;
     }
 
     /**
