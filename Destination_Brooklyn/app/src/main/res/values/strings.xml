@@ -9,6 +9,7 @@
     <string name="cat1">Time Period</string>
     <string name="cat2">Building Type</string>
     <string name="cat3">Extra</string>
+
     <string-array name="TimePeriods_array">
         <item>1960</item>
         <item>1950</item>
