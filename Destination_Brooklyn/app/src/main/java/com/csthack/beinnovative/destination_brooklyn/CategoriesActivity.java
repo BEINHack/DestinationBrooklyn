@@ -21,9 +21,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class CategoriesActivity extends AppCompatActivity
         implements OnMapReadyCallback,
@@ -35,15 +39,14 @@ public class CategoriesActivity extends AppCompatActivity
     Boolean isPopularOn = false, blackPressed = false;
     pointInterestClass[] myObjects;
     LinearLayout detailsList;
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_categories);
 
-        MapFragment mapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+
         timeFilter =(Spinner) findViewById(R.id.spinner_TimeFilter);
         timeFilter.setSelection(0);
         buildingType =(Spinner) findViewById(R.id.spinner_BuildingType);
@@ -74,6 +77,10 @@ public class CategoriesActivity extends AppCompatActivity
         POIdata start = new POIdata();
         myObjects = start.getPOIobjects();
         getPOIobjects();
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
     }
     public void onClick(View v) {
@@ -87,8 +94,13 @@ public class CategoriesActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMapReady(GoogleMap mMap) {
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
+        // Add a marker in Sydney and move the camera
+        //LatLng sydney = new LatLng(40.6912, -73.9809);
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(40.6912, -73.9809), 14.0f));
     }
 
     public pointInterestClass[] getPOIobjects() {
