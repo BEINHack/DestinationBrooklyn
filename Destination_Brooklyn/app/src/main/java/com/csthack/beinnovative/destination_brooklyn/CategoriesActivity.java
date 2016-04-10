@@ -94,6 +94,8 @@ public class CategoriesActivity extends AppCompatActivity
                 break;
             case R.id.centre_id:
                 launchActivity = new Intent(this, MainActivity.class);
+                launchActivity.putExtra("buildingType", "");
+                launchActivity.putExtra("TimePeriod", "");
                 break;
             case R.id.search_id:
                 Toast.makeText(getApplicationContext(),"Allow user to search a specific address/ subject", Toast.LENGTH_SHORT).show();

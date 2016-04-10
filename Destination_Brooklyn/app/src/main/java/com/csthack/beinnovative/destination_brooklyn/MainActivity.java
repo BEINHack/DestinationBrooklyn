@@ -113,6 +113,10 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         }
+        else{
+            buildingSelected = "";
+            timeSelected = "";
+        }
         enableMyLocation();
     }
 
@@ -141,21 +145,6 @@ public class MainActivity extends AppCompatActivity
 
         private void render(Marker marker, View view) {
             int badge;
-            // Use the equals() method on a Marker to check for equals.  Do not use ==.
-//            if (marker.equals(mBrisbane)) {
-//                badge = R.drawable.badge_qld;
-//            } else if (marker.equals(mAdelaide)) {
-//                badge = R.drawable.badge_sa;
-//            } else if (marker.equals(mSydney)) {
-//                badge = R.drawable.badge_nsw;
-//            } else if (marker.equals(mMelbourne)) {
-//                badge = R.drawable.badge_victoria;
-//            } else if (marker.equals(mPerth)) {
-//                badge = R.drawable.badge_wa;
-//            } else {
-//                // Passing 0 to setImageResource will clear the image view.
-//                badge = 0;
-//            }
 
             String title = marker.getTitle();
             TextView titleUi = ((TextView) view.findViewById(R.id.title));
@@ -267,6 +256,8 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.centre_id:
                 launchActivity = new Intent(this, MainActivity.class);
+                launchActivity.putExtra("buildingType", "");
+                launchActivity.putExtra("TimePeriod", "");
                 break;
 
             case R.id.search_id:
