@@ -1,5 +1,8 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.DrawableWrapper;
+
 /**
  * Created by nolan on 4/9/16.
  */
@@ -7,6 +10,7 @@ package com.csthack.beinnovative.destination_brooklyn;
 public  class shopClass{
     private String name, imageURL, description, website;
     private double latitude, longitude;
+    public Drawable image;
 
     shopClass(String name, String imageURL, String description, String website, double latitude, double longitude) {
         this.name = name;

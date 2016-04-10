@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -53,22 +55,8 @@ public class CustomListAdapter extends ArrayAdapter<shopClass> {
         // Setting the title view is straightforward
         viewHolder.titleView.setText(shop.getName());
         viewHolder.subTitleView.setText(shop.getDescription());
-        //viewHolder.imageView.setBackground();
+        viewHolder.imageView.setBackground(shop.image);
 
-//        TextView title = (TextView) alertView.findViewById(R.id.title);
-//        TextView description = (TextView) alertView.findViewById(R.id.description);
-//        LinearLayout bkgImage = (LinearLayout) alertView.findViewById(R.id.bkgImage);
-//
-//        // getting movie data for the row
-//
-//        // bkg image
-////        bkgImage.setBackground();
-//
-//        // title
-//        title.setText(shop.getName());
-//
-//        // description
-//        description.setText(shop.getDescription());
         return view;
     }
 

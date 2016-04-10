@@ -2,6 +2,7 @@ package com.csthack.beinnovative.destination_brooklyn;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -18,6 +19,7 @@ public class ShopActivity extends AppCompatActivity {
     CustomListAdapter adapter;
     private ArrayList<shopClass> shopObjects;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,12 +29,29 @@ public class ShopActivity extends AppCompatActivity {
         ShopData start = new ShopData();
 
         shopObjects = start.getShopData();
+        setBackground();
         adapter = new CustomListAdapter(this, shopObjects, R.layout.list_row);
 //        for (int i = 0; i<2; i++){
 //            System.out.println(shopObjects.get(i).toString());
 //            adapter.add(shopObjects.get(i));
 //        }
         shopList.setAdapter(adapter);
+    }
+
+    public void setBackground () {
+        for(int i =0; i<shopObjects.size(); i++)
+        {
+            if(shopObjects.get(i).getImageURL().equalsIgnoreCase("bridge coffee"))
+                shopObjects.get(i).image = getResources().getDrawable(R.drawable.bridgecoffee);
+            else if(shopObjects.get(i).getImageURL().equalsIgnoreCase("tutt heights"))
+                shopObjects.get(i).image = getResources().getDrawable(R.drawable.tuttheights);
+            else if(shopObjects.get(i).getImageURL().equalsIgnoreCase("Rocco jezebel"))
+                shopObjects.get(i).image = getResources().getDrawable(R.drawable.occojezebel);
+            else if(shopObjects.get(i).getImageURL().equalsIgnoreCase("Vineapple cafe"))
+                shopObjects.get(i).image = getResources().getDrawable(R.drawable.vineapplecafe);
+            else if(shopObjects.get(i).getImageURL().equalsIgnoreCase("Rocco tacos"))
+                shopObjects.get(i).image = getResources().getDrawable(R.drawable.roccotacos);
+        }
     }
 
     /**
