@@ -87,26 +87,15 @@ public class MainActivity extends AppCompatActivity
         String buildingSelected ="";
         String timeSelected ="";
         if (intent != null) {
-            buildingSelected = intent.getString("Building Type");
-            timeSelected = intent.getString("Time Period");
+            buildingSelected = getIntent().getExtras().getString("buildingType");
+            timeSelected =  getIntent().getExtras().getString("TimePeriod");
+            System.out.println(buildingSelected+timeSelected);
+            showFilters(myObjects, buildingSelected, timeSelected);
         } else {
+            System.out.println("Doing else");
             buildingSelected = "Building Type";
             timeSelected = "Time Period";
-        }
-        /*
-        Bundle bundle1 = getIntent().getExtras();
-        String buildingSelected = bundle1.getString("buildingType");
-        Bundle bundle2= getIntent().getExtras();
-        String timeSelected = bundle2.getString("TimePeriod");
-        */
-        /**
-         * The following if statement gets the results of the filter and only
-         * places a marker on the values that meet the filter conditions
-         */
-
-        if (buildingSelected.equalsIgnoreCase("building type") && timeSelected.equalsIgnoreCase("time period")) {
             for (int i = 0; i < myObjects.length; i++) {
-
                 mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
 
                 lat = myObjects[i].getLatitude();
@@ -116,45 +105,47 @@ public class MainActivity extends AppCompatActivity
                         .position(new LatLng(lat, lon))
                         .title(myObjects[i].getName())
                         .snippet(myObjects[i].getDescription()));
-
             }
-        } else if (buildingSelected.equalsIgnoreCase("building type")) {
-            for (int i = 0; i < myObjects.length; i++) {
-
-                if (myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
-
-                    mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
-
-                    lat = myObjects[i].getLatitude();
-                    lon = myObjects[i].getLongitude();
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(lat, lon))
-                            .title(myObjects[i].getName())
-                            .snippet(myObjects[i].getDescription()));
-                }
-            }
-        } else if (timeSelected.equalsIgnoreCase("time period")) {
-            for (int i = 0; i < myObjects.length; i++) {
-
-                if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)) {
-
-                    mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
-
-                    lat = myObjects[i].getLatitude();
-                    lon = myObjects[i].getLongitude();
-
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                            .position(new LatLng(lat, lon))
-                            .title(myObjects[i].getName())
-                            .snippet(myObjects[i].getDescription()));
-                }
-            }
-        } else {
-
-            showFilters(myObjects, buildingSelected, timeSelected);
-//
         }
+        /**
+         * The following if statement gets the results of the filter and only
+         * places a marker on the values that meet the filter conditions
+         */
+
+//        if (buildingSelected.equalsIgnoreCase("building type")) {
+//            for (int i = 0; i < myObjects.length; i++) {
+//
+//                if (myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
+//
+//                    mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+//
+//                    lat = myObjects[i].getLatitude();
+//                    lon = myObjects[i].getLongitude();
+//
+//                    Marker marker = mMap.addMarker(new MarkerOptions()
+//                            .position(new LatLng(lat, lon))
+//                            .title(myObjects[i].getName())
+//                            .snippet(myObjects[i].getDescription()));
+//                }
+//            }
+//        } else if (timeSelected.equalsIgnoreCase("time period")) {
+//            for (int i = 0; i < myObjects.length; i++) {
+//
+//                if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)) {
+//
+//                    mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+//
+//                    lat = myObjects[i].getLatitude();
+//                    lon = myObjects[i].getLongitude();
+//
+//                    Marker marker = mMap.addMarker(new MarkerOptions()
+//                            .position(new LatLng(lat, lon))
+//                            .title(myObjects[i].getName())
+//                            .snippet(myObjects[i].getDescription()));
+//                }
+//            }
+//        } else {
+//        }
 
         enableMyLocation();
     }
