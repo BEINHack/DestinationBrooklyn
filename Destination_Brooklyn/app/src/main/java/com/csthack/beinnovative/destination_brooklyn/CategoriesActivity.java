@@ -1,17 +1,23 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -37,18 +43,20 @@ public class CategoriesActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         timeFilter =(Spinner) findViewById(R.id.spinner_TimeFilter);
+        timeFilter.setSelection(0);
         buildingType =(Spinner) findViewById(R.id.spinner_BuildingType);
+        buildingType.setSelection(0);
         btn_filterResults = (Button) findViewById(R.id.btn_FilterResults);
         btn_Popular = (Button) findViewById(R.id.btn_Popular);
         btn_Popular.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (blackPressed == true){
                     btn_Popular.setBackground(getResources().getDrawable(R.drawable.button_boarder));
-                    btn_Popular.setTextColor(Color.parseColor("#474C55"));
+                    btn_Popular.setTextColor(Color.parseColor("#4B4E50"));
                     isPopularOn = false;
                     blackPressed = false;
                 } else {
-                    btn_Popular.setBackgroundColor(Color.parseColor("#474C55"));
+                    btn_Popular.setBackgroundColor(Color.parseColor("#CD9B43"));
                     btn_Popular.setTextColor(Color.parseColor("#FFFFFF"));
                     blackPressed = true;
                     isPopularOn = true;
@@ -106,3 +114,35 @@ public class CategoriesActivity extends AppCompatActivity
     }
 
 }
+
+ class MyAdapter extends ArrayAdapter<String> {
+
+    public MyAdapter(Context context, int textViewResourceId, String[] objects) {
+        super(context, textViewResourceId, objects);
+    }
+
+
+    public View getDropDownView(int position, View convertView,ViewGroup parent, Context context) {
+        return getCustomView(position, convertView, parent,context);
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent, Context context) {
+        return getCustomView(position, convertView, parent,context);
+    }
+
+    public View getCustomView(int position, View convertView, ViewGroup parent, Context context) {
+        View row;
+        LayoutInflater inflater = (LayoutInflater)context.getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
+        row = inflater.inflate(R.layout.spinner_row, parent, false);
+        if (position == 0) {
+            TextView label = (TextView) row.findViewById(R.id.textSpinner);
+            label.setText("Time Period");
+
+            ImageView icon = (ImageView) row.findViewById(R.id.image);
+            icon.setImageResource(R.drawable.custom_info_bubble);
+        }
+        return row;
+    }
+}
+

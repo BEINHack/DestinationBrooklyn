@@ -11,6 +11,7 @@
     <string name="cat3">Extra</string>
 
     <string-array name="TimePeriods_array">
+        <item>Time Period</item>
         <item>1860</item>
         <item>1890</item>
         <item>1940</item>
@@ -24,6 +25,7 @@
 
     </string-array>
     <string-array name="buildingType_array">
+        <item>Building Type</item>
         <item>Architecture</item>
         <item>Street Art</item>
         <item>Museum</item>

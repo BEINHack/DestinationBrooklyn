@@ -69,4 +69,7 @@ public  class shopClass{
         return this.longitude;
     }
 
+    protected void setImage (Drawable image){
+        this.image = image;
+    }
 }

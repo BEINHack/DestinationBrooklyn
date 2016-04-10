@@ -30,7 +30,7 @@
         android:layout_below="@+id/map"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        app:layout_heightPercent="20%"
+        app:layout_heightPercent="15%"
         app:layout_widthPercent="100%">
 
             <Spinner
@@ -41,13 +41,14 @@
                 android:drawablePadding ="5dp"
                 android:padding="5dp"
                 android:spinnerMode="dropdown"
-                android:layout_width= "110dp"
+                android:layout_width= "134dp"
                 android:layout_height="match_parent"
+                android:textColor="@color/dark_gray"
                 android:entries="@array/TimePeriods_array"/>
 
             <Spinner
                 android:id="@+id/spinner_BuildingType"
-                android:layout_width="110dp"
+                android:layout_width="134dp"
                 android:layout_height="match_parent"
                 android:prompt="@string/cat2"
                 android:background="@drawable/button_boarder"
@@ -55,12 +56,14 @@
                 android:drawablePadding ="10dp"
                 android:padding="5dp"
                 android:spinnerMode="dropdown"
+                android:textColor="@color/dark_gray"
                 android:entries="@array/buildingType_array"/>
             <Button
                 android:id="@+id/btn_Popular"
                 android:layout_width="110dp"
                 android:layout_height="match_parent"
                 android:text = "Show Popular"
+                android:textColor="@color/dark_gray"
                 android:background="@drawable/button_boarder"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:drawablePadding ="10dp"

@@ -1,63 +1,62 @@
 package com.csthack.beinnovative.destination_brooklyn;
 
-import android.app.Activity;
-import android.app.ListActivity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
+import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class ShopActivity extends AppCompatActivity {
-    ListView shopList;
-    CustomListAdapter adapter;
+public class DetailShopActivity extends AppCompatActivity {
     private ArrayList<shopClass> shopObjects;
-
+    String namePassed;
+    TextView title, url, description, website;
+    LinearLayout image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_shop);
-
-        shopList = (ListView) findViewById(R.id.listShop);
+        setContentView(R.layout.activity_detail_shop);
+        Bundle extras = getIntent().getExtras();
+        namePassed = getIntent().getExtras().getString("shopname");
+        //System.out.println("namePassed: "+namePassed);
         ShopData start = new ShopData();
-
         shopObjects = start.getShopData();
+        int item = getObjectCliked();
         setBackground();
-        adapter = new CustomListAdapter(this, shopObjects, R.layout.list_row);
-//        for (int i = 0; i<2; i++){
-//            System.out.println(shopObjects.get(i).toString());
-//            adapter.add(shopObjects.get(i));
-//        }
-        shopList.setAdapter(adapter);
-        shopList.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> adapter, View v, int position,
-                                    long arg3)
-            {
-                Object listItem = shopList.getItemAtPosition(position);
-                System.out.println("listItem: "+listItem);
-                shopClass passOn = shopObjects.get(position);
-                System.out.println("passON: "+passOn);
-                String shopname = passOn.getName();
-                System.out.println("shopname: "+shopname);
-                Intent launchMain = new Intent(ShopActivity.this, DetailShopActivity.class);
-                launchMain.putExtra("shopname", shopname);
-                startActivity(launchMain);
-            }
-        });
+        title = (TextView) findViewById(R.id.title);
+        url = (TextView) findViewById(R.id.url);
+        description = (TextView) findViewById(R.id.description);
+        website = (TextView) findViewById(R.id.website);
+        image = (LinearLayout) findViewById(R.id.bkgImage);
+        title.setText(shopObjects.get(item).getName());
+        url.setText("Shop Details");
+        description.setText(shopObjects.get(item).getDescription());
+        String text = shopObjects.get(item).getWebsite();
+        website.setText(Html.fromHtml(text));
+            //website.setText(shopObjects.get(item).getName()+" website");
+        Linkify.addLinks(website, Linkify.ALL);
+        image.setBackground(shopObjects.get(item).image);
     }
-
+    public int getObjectCliked(){
+        int a = 0;
+        for (int i = 0; i<shopObjects.size(); i++){
+            if(shopObjects.get(i).getName().equalsIgnoreCase(namePassed)){
+                a = i;
+            }
+        }
+        System.out.println("a:"+a);
+        System.out.println(shopObjects.get(a).getName());
+        return a;
+    }
 
     public void setBackground () {
         for(int i =0; i<shopObjects.size(); i++) {
@@ -79,7 +78,6 @@ public class ShopActivity extends AppCompatActivity {
             }
         }
     }
-
     /**
      * Adding menu bar
      */
@@ -89,7 +87,6 @@ public class ShopActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.main_activity_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent launchActivity = new Intent();
@@ -117,3 +114,4 @@ public class ShopActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

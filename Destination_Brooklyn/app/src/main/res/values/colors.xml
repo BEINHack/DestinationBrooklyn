@@ -10,4 +10,8 @@
     <color name="list_row_end_color">#000000</color>
     <color name="list_row_hover_start_color">#888888</color>
     <color name="list_row_hover_end_color">#888888</color>
+
+    <color name="light_gray">#D7E2E5</color>
+    <color name="dark_gray">#4B4E50</color>
+
 </resources>
