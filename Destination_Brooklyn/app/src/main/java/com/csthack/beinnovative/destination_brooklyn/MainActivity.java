@@ -81,18 +81,22 @@ public class MainActivity extends AppCompatActivity
         POIdata start = new POIdata();
         pointInterestClass[] myObjects = start.getPOIobjects();
 
-        String buildingSelected = getIntent().getExtras().getString("buildingType");
-        String timeSelected = getIntent().getExtras().getString("TimePeriod");
-
+        Bundle intent = getIntent().getExtras();
+        String buildingSelected ="";
+        String timeSelected ="";
+        if (intent != null) {
+            buildingSelected = intent.getString("buildingType");
+            timeSelected = intent.getString("TimePeriod");
+        } else {
+            buildingSelected = "";
+            timeSelected = "";
+        }
         /*
         Bundle bundle1 = getIntent().getExtras();
         String buildingSelected = bundle1.getString("buildingType");
         Bundle bundle2= getIntent().getExtras();
         String timeSelected = bundle2.getString("TimePeriod");
         */
-
-        System.out.println(buildingSelected);
-        System.out.println(timeSelected);
         /**
          * The following if statement gets the results of the filter and only
          * places a marker on the values that meet the filter conditions
