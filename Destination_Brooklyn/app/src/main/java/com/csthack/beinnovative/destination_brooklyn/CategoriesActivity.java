@@ -76,7 +76,7 @@ public class CategoriesActivity extends AppCompatActivity
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(GoogleMap mMap) {
 
     }
 
@@ -113,6 +113,7 @@ public class CategoriesActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+
 }
 
  class MyAdapter extends ArrayAdapter<String> {
@@ -145,4 +146,5 @@ public class CategoriesActivity extends AppCompatActivity
         return row;
     }
 }
+
 

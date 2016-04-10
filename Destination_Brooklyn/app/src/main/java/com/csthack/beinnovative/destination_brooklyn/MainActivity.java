@@ -84,22 +84,40 @@ public class MainActivity extends AppCompatActivity
         String buildingSelected = getIntent().getExtras().getString("buildingType");
         String timeSelected = getIntent().getExtras().getString("TimePeriod");
 
+        /*
+        Bundle bundle1 = getIntent().getExtras();
+        String buildingSelected = bundle1.getString("buildingType");
+        Bundle bundle2= getIntent().getExtras();
+        String timeSelected = bundle2.getString("TimePeriod");
+        */
+
         System.out.println(buildingSelected);
         System.out.println(timeSelected);
-
         /**
          * The following if statement gets the results of the filter and only
          * places a marker on the values that meet the filter conditions
          */
 
-        if (!buildingSelected.equals(null) && !timeSelected.equals(null)) {
+        if (buildingSelected.equalsIgnoreCase("building type") && timeSelected.equalsIgnoreCase("time period")) {
             for (int i = 0; i < myObjects.length; i++) {
 
-                if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)
-                        && myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
+                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
+                lat = myObjects[i].getLatitude();
+                lon = myObjects[i].getLongitude();
+
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(lat, lon))
+                        .title(myObjects[i].getName())
+                        .snippet(myObjects[i].getDescription()));
+
+            }
+        } else if (buildingSelected.equalsIgnoreCase("building type")) {
+            for (int i = 0; i < myObjects.length; i++) {
+
+                if (myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
 
                     mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
-                    //getLayoutInflater().inflate(R.layout.custom_info_window, null);
 
                     lat = myObjects[i].getLatitude();
                     lon = myObjects[i].getLongitude();
@@ -108,16 +126,65 @@ public class MainActivity extends AppCompatActivity
                             .position(new LatLng(lat, lon))
                             .title(myObjects[i].getName())
                             .snippet(myObjects[i].getDescription()));
-
-                    //marker.showInfoWindow();
                 }
             }
+        } else if (timeSelected.equalsIgnoreCase("time period")) {
+            for (int i = 0; i < myObjects.length; i++) {
+
+                if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)) {
+
+                    mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
+                    lat = myObjects[i].getLatitude();
+                    lon = myObjects[i].getLongitude();
+
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(lat, lon))
+                            .title(myObjects[i].getName())
+                            .snippet(myObjects[i].getDescription()));
+                }
+            }
+        } else {
+
+            showFilters(myObjects, buildingSelected, timeSelected);
+//
         }
-        else{
-            buildingSelected = "";
-            timeSelected = "";
-        }
+
         enableMyLocation();
+    }
+
+    private void showFilters(pointInterestClass[] myObjects, String buildingSelected, String timeSelected) {
+        for (int i = 0; i < myObjects.length; i++) {
+
+            if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)
+                    && myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
+
+                mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
+                lat = myObjects[i].getLatitude();
+                lon = myObjects[i].getLongitude();
+
+                Marker marker = mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(lat, lon))
+                        .title(myObjects[i].getName())
+                        .snippet(myObjects[i].getDescription()));
+            }
+        }
+    }
+
+    private void showAll(pointInterestClass[] myObjects) {
+        for (int i = 0; i < myObjects.length; i++) {
+            mMap.setInfoWindowAdapter(new CustomInfoWindowAdapter());
+
+            lat = myObjects[i].getLatitude();
+            lon = myObjects[i].getLongitude();
+
+            Marker marker = mMap.addMarker(new MarkerOptions()
+                    .position(new LatLng(lat, lon))
+                    .title(myObjects[i].getName())
+                    .snippet(myObjects[i].getDescription()));
+
+        }
     }
 
     private class CustomInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
