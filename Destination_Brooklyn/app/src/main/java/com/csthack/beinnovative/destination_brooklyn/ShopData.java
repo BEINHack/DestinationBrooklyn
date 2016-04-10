@@ -1,15 +1,18 @@
 package com.csthack.beinnovative.destination_brooklyn;
 import com.csthack.beinnovative.destination_brooklyn.shopClass;
+
+import java.util.ArrayList;
+
 /**
  * Created by Berta on 4/9/2016.
  */
 public class ShopData {
-    private shopClass[] shopObjects;
+    private ArrayList<shopClass> shopObjects = new ArrayList<shopClass>();
 
     ShopData(){
 
         shopClass shop1 = new shopClass("Bridge Coffee Shop ",
-                "http://s3-media2.fl.yelpcdn.com/bphoto/rCH8RPxvzNRJCO66vqE1-A/o.jpg",
+                "BridgeCoffee",
                 "Low priced local coffee shop which provides a robust menu of Latin American foods and drinks. Great place to get a traditional Latino meal with a Brooklyn touch",
                 "http://www.yelp.com/biz/bridge-coffee-shop-new-york",
                 40.702238,
@@ -23,7 +26,7 @@ public class ShopData {
                 -73.993280);
 
         shopClass shop3 = new shopClass("Rocco and Jezebel for Pets",
-                "http://www.zoespremium.com/wp-content/uploads/2012/07/RoccoJezebel.jpg",
+                "http://www.zoespremium.com/wp-content/uploads/2012/07/occojezebel.jpg",
                 "Knowledgeable, friendly, family run business which provides everything you'd ever need for your best furry little friend. Great place to get treats, toys, and grooming!",
                 "http://www.roccoandjezebel.com/",
                 40.698032,
@@ -43,10 +46,14 @@ public class ShopData {
                 -73.988411);
 
 
-        shopObjects = new shopClass[] {shop1, shop2, shop3,shop4,shop5};
+        shopObjects.add(shop1);
+        shopObjects.add(shop2);
+        shopObjects.add(shop3);
+        shopObjects.add(shop4);
+        shopObjects.add(shop5);
     }
 
-    public shopClass[] getShopData(){
+    public ArrayList<shopClass> getShopData(){
         return shopObjects;
     }
 }

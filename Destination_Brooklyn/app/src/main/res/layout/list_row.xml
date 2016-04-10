@@ -1,32 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--Style for the list-->
-
-<android.support.percent.PercentRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-    <RelativeLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/list_row_selector"
-        app:layout_heightPercent="33%"
-        app:layout_widthPercent="100%">
+        android:paddingBottom="15dp">
 
         <!-- Background Image -->
         <LinearLayout
             android:id="@+id/bkgImage"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/coffe"
+            android:layout_height="205dp"
             android:orientation="vertical"
+            android:background="@drawable/bridgecoffee"
             android:alpha="0.65"/>
 
         <LinearLayout
@@ -42,7 +29,6 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Test"
                 android:textSize="@dimen/title"
                 android:textStyle="bold"
                 android:textColor="@color/genre"
@@ -56,10 +42,8 @@
                 android:layout_below="@id/title"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
-                android:text="blah blah blahg blah blah blah "
                 android:textColor="@color/genre"
                 android:textSize="@dimen/genre" />
 
         </LinearLayout>
-    </RelativeLayout>
-</android.support.percent.PercentRelativeLayout>
+</RelativeLayout>
