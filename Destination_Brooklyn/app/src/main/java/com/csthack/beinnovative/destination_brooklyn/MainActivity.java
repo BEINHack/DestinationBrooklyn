@@ -24,6 +24,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
+import com.csthack.beinnovative.destination_brooklyn.pointInterestClass;
+
 public class MainActivity extends AppCompatActivity
         implements
         OnMyLocationButtonClickListener,
@@ -70,19 +72,37 @@ public class MainActivity extends AppCompatActivity
         double latitude = location.getLatitude();
         map.moveCamera( CameraUpdateFactory.newLatLngZoom(new LatLng(latitude,longitude) , 14.0f) );
 
+        /**
+         * Creates an array of objects using the POIdata class and pointInterestClass
+         */
+
         POIdata start = new POIdata();
         pointInterestClass[] myObjects = start.getPOIobjects();
 
-        String periodSelected = getIntent().getExtras().getString("buildingType");
+        String buildingSelected = getIntent().getExtras().getString("buildingType");
         String timeSelected = getIntent().getExtras().getString("TimePeriod");
 
-        if (periodSelected.equals(null) && timeSelected.equals(null)) {
+        System.out.println(buildingSelected);
+        System.out.println(timeSelected);
+
+        /**
+         * The following if statement gets the results of the filter and only
+         * places a marker on the values that meet the filter conditions
+         */
+
+        if (!buildingSelected.equals(null) && !timeSelected.equals(null)) {
             for (int i = 0; i < myObjects.length; i++) {
-                lat = myObjects[i].getLatitude();
-                lon = myObjects[i].getLatitude();
-                mMap.addMarker(new MarkerOptions()
-                        .position(new LatLng(lat, lon))
-                        .title(myObjects[i].getName()));
+
+                if (myObjects[i].getBuildingType().equalsIgnoreCase(buildingSelected)
+                        && myObjects[i].getTimePeriod().equalsIgnoreCase(timeSelected)) {
+
+                    lat = myObjects[i].getLatitude();
+                    lon = myObjects[i].getLongitude();
+                    mMap.addMarker(new MarkerOptions()
+                            .position(new LatLng(lat, lon))
+                            .title(myObjects[i].getName()));
+
+                }
             }
         }
 
