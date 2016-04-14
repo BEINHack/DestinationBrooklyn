@@ -72,8 +72,15 @@ public class MainActivity extends AppCompatActivity
          */
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        double longitude = location.getLongitude();
-        double latitude = location.getLatitude();
+        double longitude;
+        double latitude;
+        if (location  == null) {
+            longitude = -73.9897337;
+            latitude = 40.69653;
+        } else {
+            longitude = location.getLongitude();
+            latitude = location.getLatitude();
+        }
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 14.0f));
 
         /**
